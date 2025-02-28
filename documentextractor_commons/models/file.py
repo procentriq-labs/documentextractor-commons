@@ -11,12 +11,12 @@ class FileType(str, Enum):
     PPT = "application/vnd.ms-powerpoint"
     PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 
-class PendingFileResponse(BaseModel):
+class FileResponse(BaseModel):
     id: str
     filename: str
     filetype: FileType
     size: int
-    created_at: datetime
+    upload_time: datetime
 
     class Config:
         from_attributes = True
@@ -28,27 +28,6 @@ class PendingFileResponse(BaseModel):
                     "filetype": "application/pdf",
                     "size": 43627,
                     "upload_time": "2024-10-24T18:37:41.354093",
-                }
-            ]
-        }
-
-class FileResponse(BaseModel):
-    id: str
-    filename: str
-    filetype: str
-    size: int
-    upload_time: datetime
-
-    class Config:
-        from_attributes = True
-        json_schema_extra = {
-            "examples": [
-                {
-                    "id": "filep_5UxOAcqHTzeoxb3_Vvk0vA",
-                    "filename": "Foo.pdf",
-                    "description": "pdf",
-                    "price": 123123123,
-                    "upload_time": 123123123,
                 }
             ]
         }

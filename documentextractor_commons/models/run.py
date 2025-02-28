@@ -26,14 +26,14 @@ class RunResult(BaseModel):
     errors: list[str]
 
 class RunCreate(BaseModel):
-    pending_file_ids: list[str]
+    file_ids: list[str]
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "examples": [
                 {
-                    "pending_file_ids": [
+                    "file_ids": [
                         "filep_-A5BTaGVQxe82njKX_GDHA",
                         "filep_SjrJeycYSXeoimFTa1dp5w",
                     ],
