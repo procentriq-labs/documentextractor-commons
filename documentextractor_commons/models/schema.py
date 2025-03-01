@@ -3,6 +3,7 @@ from __future__ import annotations
 from enum import Enum
 from datetime import datetime
 from pydantic import BaseModel, Field, root_validator
+from uuid import UUID
 
 class AttributeType(str, Enum):
     TEXT = "Text"
@@ -83,7 +84,7 @@ class SchemaCreate(BaseModel):
         return values
 
 class SchemaResponse(BaseModel):
-    id: str
+    id: UUID
     key: str
     name: str
     description: str | None
@@ -99,7 +100,7 @@ class SchemaResponse(BaseModel):
         json_schema_extra = {
             "examples": [
                 {
-                    "id": "s_rDkgEC2aTkiNMKkFAnV8Ng",
+                    "id": "925e106a-9b57-4a8a-baae-c35042ea275c",
                     "key": "letter",
                     "name": "Simple Letter",
                     "description": "A simple letter with recipient details, title, and body.",
@@ -108,7 +109,7 @@ class SchemaResponse(BaseModel):
                     "is_array": False,
                     "children": [
                         {
-                        "id": "s_rDkgEC2aTkiNMKkFAnV8gr",
+                        "id": "aebf8f71-1cd8-48f9-8b67-2b0472b88826",
                         "key": "recipient_address",
                         "name": "Recipient Address",
                         "description": "The address the letter is sent to.",
@@ -117,7 +118,7 @@ class SchemaResponse(BaseModel):
                         "is_array": False,
                         "children": [
                              {
-                                "id": "atr_lnkgEC2aTkiNMKkFAnV8gr",
+                                "id": "df015a23-5827-4983-8d0a-d8345ac466c",
                                 "key": "recipient_name",
                                 "name": "Recipient Name",
                                 "description": "The name of the letter's recipient.",
@@ -129,7 +130,7 @@ class SchemaResponse(BaseModel):
                                 "updated_at": None
                             },
                             {
-                                "id": "atr_rKkgEC2aTkiNMKkFAnV8ah",
+                                "id": "8deceae5-9aac-454f-b32b-f7302302fe36",
                                 "key": "recipient_address",
                                 "name": "Recipient Address",
                                 "description": "The address of the letter's recipient.",
@@ -145,7 +146,7 @@ class SchemaResponse(BaseModel):
                         "updated_at": None
                         },
                         {
-                        "id": "atr_rDkgEC2aTkiNMKkhadV8gr",
+                        "id": "1b7482c8-bfef-4184-b162-1589248481ae",
                         "key": "subject",
                         "name": "Subject",
                         "description": "The subject of the letter.",
@@ -157,7 +158,7 @@ class SchemaResponse(BaseModel):
                         "updated_at": None
                         },
                         {
-                        "id": "atr_ahdf3AC2aTkiNMKkhadV8gr",
+                        "id": "9eecef2c-121c-4ed2-a93a-255b84dc750c",
                         "key": "body",
                         "name": "Body",
                         "description": "The body of the letter.",

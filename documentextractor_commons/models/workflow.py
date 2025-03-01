@@ -1,6 +1,7 @@
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel
+from uuid import UUID
 
 from .schema import SchemaCreate, SchemaResponse
 
@@ -80,23 +81,23 @@ class WorkflowUpdate(BaseModel):
 
 
 class WorkflowResponse(BaseModel):
-    id: str
+    id: UUID
     name: str
     extraction_schema: SchemaResponse
     runs: list[int]
     created_at: datetime
     updated_at: datetime | None
-    created_by: str
+    created_by: UUID
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "examples": [
                 {
-                    "id": "wf_rDkgEC2aTkiNMKkFAnV8Ng",
+                    "id": "d83862c1-4e10-4bef-8c40-26b774c3cd38",
                     "name": "Total spend extraction",
                     "extraction_schema": {
-                        "id": 3,
+                        "id": "439-7f425-4618-481d-9dc9-0eccb1b90aa4",
                         "key": "total_amount",
                         "name": "Total Amount",
                         "description": "The total amount logged on the invoice",
@@ -110,7 +111,7 @@ class WorkflowResponse(BaseModel):
                     "runs": [1,2,3,4],
                     "created_at": "2024-10-24T12:00:00",
                     "updated_at": None,
-                    "created_by": "u_rDkgEC2aTkiNMKkFAnV8Ng",
+                    "created_by": "e4ecd95c-8b4c-41b8-8b00-6acae02e868a",
                 }
             ]
         }

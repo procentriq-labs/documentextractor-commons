@@ -2,6 +2,7 @@ from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel
 from typing import Dict, Any
+from uuid import UUID
 
 class RunStatus(str, Enum):
     DRAFT = "draft"
@@ -17,7 +18,7 @@ class RunResultResponseFormat(str, Enum):
     EXCEL = "excel"
 
 class FileExtractionResult(BaseModel):
-    file_id: str
+    file_id: UUID
     file_name: str
     data: Dict[str, Any] | None
 
@@ -26,7 +27,7 @@ class RunResult(BaseModel):
     errors: list[str]
 
 class RunCreate(BaseModel):
-    file_ids: list[str]
+    file_ids: list[UUID]
 
     class Config:
         from_attributes = True
@@ -34,8 +35,8 @@ class RunCreate(BaseModel):
             "examples": [
                 {
                     "file_ids": [
-                        "filep_-A5BTaGVQxe82njKX_GDHA",
-                        "filep_SjrJeycYSXeoimFTa1dp5w",
+                        "f73d464e-b8fd-40b0-9f13-44d476af4c91",
+                        "e996b436-96df-4867-90f5-fe5d6f2916c1",
                     ],
                 }
             ]
@@ -43,8 +44,8 @@ class RunCreate(BaseModel):
 
 class RunResponse(BaseModel):
     run_num: int
-    workflow_id: str
-    file_ids: list[str]
+    workflow_id: UUID
+    file_ids: list[UUID]
     status: RunStatus
     results: RunResult | None
     created_at: datetime
@@ -56,9 +57,9 @@ class RunResponse(BaseModel):
             "examples": [
                 {
                     "run_num": 1,
-                    "workflow_id": "wf_rDkgEC2aTkiNMKkFAnV8Ng",
+                    "workflow_id": "36060877-5005-4fcd-9d96-5a729d9f5292",
                     "file_ids": [
-                        "file_5UxOAcqHTzeoxb3_Vvk0vA"
+                        "f73d464e-b8fd-40b0-9f13-44d476af4c91"
                     ],
                     "status": RunStatus.DRAFT,
                     "results": None,
