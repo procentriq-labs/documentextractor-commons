@@ -14,7 +14,7 @@ class AttributeTypeCreate(str, Enum):
 
 class SchemaCreate(BaseModel):
     key: str | None = Field(None, pattern=r"^[A-Za-z_]*$")
-    name: str | None
+    name: str | None = None
     description: str | None
     source: AttributeSource = AttributeSource.DOC_DATA
     type: AttributeTypeCreate | None
