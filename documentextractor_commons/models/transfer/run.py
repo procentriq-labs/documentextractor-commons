@@ -1,21 +1,9 @@
 from datetime import datetime
-from enum import Enum
 from pydantic import BaseModel
 from typing import Dict, Any
 from uuid import UUID
 
-class RunStatus(str, Enum):
-    DRAFT = "draft"
-    WAITING = "waiting"
-    RUNNING = "running"
-    COMPLETED = "completed"
-    CANCELLED = "cancelled"
-    FAILED = "failed"
-
-class RunResultResponseFormat(str, Enum):
-    JSON = "json"
-    CSV = "csv"
-    EXCEL = "excel"
+from ..core.run import RunStatus
 
 class FileExtractionResult(BaseModel):
     file_id: UUID

@@ -1,38 +1,16 @@
-from __future__ import annotations
-
-from enum import Enum
 from datetime import datetime
+from enum import Enum
 from pydantic import BaseModel, Field, root_validator
 from uuid import UUID
 
-class AttributeType(str, Enum):
+from ..core.schema import AttributeSource, AttributeType
+
+class AttributeTypeCreate(str, Enum):
     TEXT = "Text"
     NUMBER = "Number"
     DATE = "Date"
     TIME = "Time"
     DATETIME = "DateTime"
-    ADDRESS = "Address"
-    NAME = "Name"
-    LINEITEM = "LineItem"
-
-    @classmethod
-    def _missing_(cls, value):
-        if(value=="Other"):
-            return AttributeType.TEXT
-        return super()._missing_(value)
-
-class AttributeTypeCreate(str, Enum): # Strict subset of AttributeType
-    TEXT = "Text"
-    NUMBER = "Number"
-    DATE = "Date"
-    TIME = "Time"
-    DATETIME = "DateTime"
-
-class AttributeSource(str, Enum):
-    DOC_DATA = "data"
-    DOC_INSIGHT = "insight"
-    ERP_SAP = "sap"
-    ERP_HUBSPOT = "hubspot"
 
 class SchemaCreate(BaseModel):
     key: str | None = Field(None, pattern=r"^[A-Za-z_]*$")
@@ -41,7 +19,7 @@ class SchemaCreate(BaseModel):
     source: AttributeSource = AttributeSource.DOC_DATA
     type: AttributeTypeCreate | None
     is_array: bool
-    children: list[SchemaCreate] | None # top-level schema needs to contain at least one child
+    children: list["SchemaCreate"] | None # top-level schema needs to contain at least one child
 
     class Config:
         from_attributes = True
@@ -91,7 +69,7 @@ class SchemaResponse(BaseModel):
     source: AttributeSource
     type: AttributeType | None
     is_array: bool
-    children: list[SchemaResponse] | None
+    children: list["SchemaResponse"] | None
     created_at: datetime
     updated_at: datetime | None
 

@@ -1,16 +1,8 @@
 from datetime import datetime
-from enum import Enum
 from pydantic import BaseModel
 from uuid import UUID
 
-class FileType(str, Enum):
-    PDF = "application/pdf"
-    HTML = "text/html"
-    RTF = "application/rtf"
-    DOC = "application/msword"
-    DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    PPT = "application/vnd.ms-powerpoint"
-    PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+from ..core.file import FileType
 
 class FileResponse(BaseModel):
     id: UUID
