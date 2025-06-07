@@ -8,9 +8,7 @@ class AttributeType(str, Enum):
     DATE = "Date"
     TIME = "Time"
     DATETIME = "DateTime"
-    ADDRESS = "Address"
     NAME = "Name"
-    LINEITEM = "LineItem"
 
     @classmethod
     def _missing_(cls, value):
