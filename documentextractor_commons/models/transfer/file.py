@@ -9,6 +9,7 @@ class FileResponse(BaseModel):
     filename: str
     filetype: FileType
     size: int
+    num_pages: int
     upload_time: datetime
 
     class Config:
