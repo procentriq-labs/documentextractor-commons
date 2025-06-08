@@ -17,7 +17,7 @@ class SchemaCreate(BaseModel):
     name: str | None = None
     description: str | None
     source: AttributeSource = AttributeSource.DOC_DATA
-    type: AttributeTypeCreate | None
+    type: AttributeTypeCreate | None = None
     is_array: bool
     children: list["SchemaCreate"] | None = None # top-level schema needs to contain at least one child
 
@@ -59,6 +59,12 @@ class SchemaCreate(BaseModel):
     def validate_key_present(cls, values):
         if not values.get('name') and not values.get('key'):
             raise ValueError("Either 'name' or 'key' must be provided.")
+        return values
+    
+    @root_validator(pre=True)
+    def validate_attribute_type_exists(cls, values):
+        if values.get('type') is None and (values.get('children') is None or len(values.get('children')) == 0):
+            raise ValueError("Attributes (childless schemas) require 'type' to be set.")
         return values
 
 class SchemaResponse(BaseModel):
