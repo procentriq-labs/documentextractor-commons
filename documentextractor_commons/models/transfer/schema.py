@@ -18,7 +18,7 @@ class SchemaCreate(BaseModel):
     description: str | None
     source: AttributeSource = AttributeSource.DOC_DATA
     type: AttributeTypeCreate | None = None
-    is_array: bool
+    is_array: bool = False
     children: list["SchemaCreate"] | None = None # top-level schema needs to contain at least one child
 
     class Config:
