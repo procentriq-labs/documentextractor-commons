@@ -4,6 +4,17 @@ from uuid import UUID
 
 from ..core.file import FileType
 
+class UploadRequest(BaseModel):
+    filename: str
+    content_type: str
+class UploadResponse(BaseModel):
+    upload_token: str
+    upload_url: str
+    object_key: str
+
+class CreateFileRequest(BaseModel):
+    upload_token: str
+
 class FileResponse(BaseModel):
     id: UUID
     filename: str
