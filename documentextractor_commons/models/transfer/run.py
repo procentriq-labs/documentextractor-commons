@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
-from typing import Dict, Any
+from typing import Dict, Any, Literal
 from uuid import UUID
 
 from ..core.run import RunStatus
@@ -16,7 +16,7 @@ class RunResult(BaseModel):
 
 class RunCreate(BaseModel):
     file_ids: list[UUID]
-    status: RunStatus = RunStatus.READY
+    status: Literal[RunStatus.DRAFT, RunStatus.READY] = RunStatus.READY
 
     class Config:
         from_attributes = True
@@ -33,7 +33,7 @@ class RunCreate(BaseModel):
 
 class RunUpdate(BaseModel):
     file_ids: list[UUID] | None = None
-    status: RunStatus | None = None
+    status: Literal[RunStatus.DRAFT, RunStatus.READY] | None = None
 
     class Config:
         from_attributes = True
