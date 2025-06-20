@@ -1,5 +1,5 @@
 from .file import CreateFileRequest, UploadRequest, UploadResponse, FileResponse
-from .run import FileExtractionResult, RunCreate, RunResponse, RunResult
+from .run import FileExtractionResult, RunCreate, RunResponse, RunResult, RunUpdate
 from .schema import AttributeTypeCreate, SchemaCreate, SchemaResponse
 from .workflow import WorkflowCreate, WorkflowUpdate, WorkflowResponse
 
@@ -10,6 +10,7 @@ __all__ = [
     "FileResponse",
     "FileExtractionResult",
     "RunCreate",
+    "RunUpdate",
     "RunResponse",
     "RunResult",
     "AttributeTypeCreate",

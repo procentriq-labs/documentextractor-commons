@@ -31,6 +31,20 @@ class RunCreate(BaseModel):
             ]
         }
 
+class RunUpdate(BaseModel):
+    file_ids: list[UUID] | None = None
+    status: RunStatus | None = None
+
+    class Config:
+        from_attributes = True
+        json_schema_extra = {
+            "examples": [
+                {
+                    "status": "ready",
+                }
+            ]
+        }
+
 class RunResponse(BaseModel):
     run_num: int
     workflow_id: UUID
