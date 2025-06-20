@@ -16,6 +16,7 @@ class RunResult(BaseModel):
 
 class RunCreate(BaseModel):
     file_ids: list[UUID]
+    status: RunStatus = RunStatus.READY
 
     class Config:
         from_attributes = True

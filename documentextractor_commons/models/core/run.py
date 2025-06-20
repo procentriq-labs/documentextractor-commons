@@ -2,6 +2,7 @@ from enum import Enum
 
 class RunStatus(str, Enum):
     DRAFT = "draft"
+    READY = "ready"
     WAITING = "waiting"
     RUNNING = "running"
     COMPLETED = "completed"
